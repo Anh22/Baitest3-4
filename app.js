@@ -165,7 +165,49 @@ function reverseString(str_input){
     // Ngày 30/04/2019 là ngày hợp lệ” “Ngày tiếp theo là: 01/5/2019
     // Ngày 31/12/2020 là ngày hợp lệ” “Ngày tiếp theo là: 01/01/2021
     
-    
+    function checkDate() {
+  var day = parseInt(prompt("Nhập ngày:"));
+  var month = parseInt(prompt("Nhập tháng:"));
+  var year = parseInt(prompt("Nhập năm:"));
+
+  var maxDay;
+  // Kiểm tra ngày tháng năm hợp lệ
+  if (month == 2) {
+      if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+          maxDay = 29;
+      } else {
+          maxDay = 28;
+      }
+  } else if ([4, 6, 9, 11].includes(month)) {
+      maxDay = 30;
+  } else {
+      maxDay = 31;
+  }
+
+  if (day < 1 || day > maxDay) {
+      return "Ngày không hợp lệ";
+  }
+
+  // Tìm ngày tiếp theo
+  var nextDay, nextMonth, nextYear;
+  if (day == maxDay && month == 12) {
+      nextDay = 1;
+      nextMonth = 1;
+      nextYear = year + 1;
+  } else if (day == maxDay) {
+      nextDay = 1;
+      nextMonth = month + 1;
+      nextYear = year;
+  } else {
+      nextDay = day + 1;
+      nextMonth = month;
+      nextYear = year;
+  }
+
+  // In thông tin ngày tiếp theo
+  return "Ngày tiếp theo là: " + nextDay + "/" + nextMonth + "/" + nextYear;
+}
+checkDate()
     
     
     
